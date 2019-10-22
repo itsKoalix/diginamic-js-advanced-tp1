@@ -3,6 +3,7 @@
 const axios = require('axios');
 let Planet = require('./planet.js');
 
+// On affiche certaines planètes en fonction des ids passés en paramètre
 const fetchThesePlanets = async (...numbers) => {
     let planets = axios.get('https://swapi.co/api/planets')
     .then(response => {
@@ -46,6 +47,7 @@ const fetchThesePlanets = async (...numbers) => {
     });
 }
 
+// affiche toutes les planètes
 const fetchAllPlanets = async () => {
     let planets = axios.get('https://swapi.co/api/planets')
     .then(response => {
@@ -57,7 +59,7 @@ const fetchAllPlanets = async () => {
             planetsTab.push(planet);
         });
     console.log(
-        ` These planets have a total of ${Planet.countPlanetsPopulation(planetsTab)} inhabitants.`
+        ` Page 1 of the galaxy has a total of ${Planet.countPlanetsPopulation(planetsTab)} inhabitants.`
         );
     })
     .catch(error => {
@@ -65,6 +67,6 @@ const fetchAllPlanets = async () => {
     });
 }
 
+// tests d'affichage
 fetchThesePlanets(0, 1, 2);
-fetchThesePlanets(3, 4);
 fetchAllPlanets();

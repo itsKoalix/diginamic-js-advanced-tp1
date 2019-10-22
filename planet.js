@@ -1,23 +1,26 @@
 'use strict'
 
 module.exports = class Planet {
+    
+    constructor({name, population}) {
+        if(population == "unknown"){
+            population = 0;
+        }
+        population = (parseInt(population));
+        this.name = name;
+        this.population = population;
+    }
 
+    // Somme de la population du tableau d'objets Planet passés en paramètre
     static countPlanetsPopulation(planets){
         return planets.reduce(
             (population, planet) => population + planet.population, 0
         );
     }
 
-    constructor({name, population}) {
-       this.name = name;
-       this.population = population;
-    }
-
+    // En fonction de la population de la planète, 
+    // on affiche un message différent
     display(planet){
-        if(planet.population == "unknown"){
-            planet.population = 0;
-        }
-        planet.population = (parseInt(planet.population));
         if(planet.population > 999999){
             console.log(
                 `Planet ${ planet.name } is a busy planet of ${ planet.population} inhabitants!`
